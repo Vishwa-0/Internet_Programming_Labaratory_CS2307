@@ -1,0 +1,35 @@
+body{
+background-color:honeydew;
+background-image:url("bg.jpeg");
+background-repeat:No repeat;
+background-size:cover;
+
+color:darkslategrey;
+}
+#header{
+text-align:center;
+}
+.brand{
+color:seagreen;
+}
+.divider{
+width:80%;
+}
+.center-text{
+text-align:center;
+}
+#about-us{
+width: auto;
+margin: 15px;
+padding: 15px;
+border: 2px solid seagreen;
+background-color: white;
+text-align: center;
+}
+.footer-table{
+background-color:darkslategrey;
+}
+.footer-text{
+color:white;
+font-size:small;
+}

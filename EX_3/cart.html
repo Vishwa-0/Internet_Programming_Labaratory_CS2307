@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>VORTEX - Checkout</title>
+</head>
+<body bgcolor="#f7f2ed" text="#4a3b32" link="#8a6d5c">
+<center>
+<h2><font color="#8a6d5c">VORTEX</font></h2>
+<p>
+<a href="index.html">Home</a> | 
+<a href="login.html">Login</a> | 
+<a href="product-detail.html">Featured Products</a> | 
+<b>Checkout</b>
+</p>
+<hr width="100%">
+</center>
+<br><br>
+<table width="60%" align="center" bgcolor="#ffffff">
+<tr>
+<td>
+<center>
+<h2><font color="#8a6d5c">Complete Your Purchase</font></h2>
+<p><font color="#6e5b4f">Please review your item details and enter your shipping info.</font></p>
+</center>
+<hr>
+<form action="index.html" method="get">
+<h3><font color="#8a6d5c">1. Confirm Selected Item</font></h3>
+<p>
+Select Product:<br>
+<select name="confirmed_product">
+<option value="watch">Minimalist Leather Watch - ₹10,000</option>
+<option value="backpack">Leather Backpack - ₹7,000</option>
+</select>
+</p>
+<p>
+Select Quantity:<br>
+<select name="confirmed_quantity">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+</select>
+</p>
+<hr>
+<h3><font color="#8a6d5c">2. Shipping & Delivery</font></h3>
+<p>Full Name:<br> <input type="text" name="customer_name" required size="40"></p>
+<p>Email Address:<br> <input type="email" name="customer_email" required size="40"></p>
+<p>Shipping Address:<br> <textarea name="customer_address" required rows="4" cols="38"></textarea></p>
+<hr>
+<h3><font color="#8a6d5c">3. Payment</font></h3>
+<p>
+<input type="radio" name="payment" value="cod" checked> Cash on Delivery (COD)<br>
+<input type="radio" name="payment" value="card"> Credit/Debit Card
+</p>
+<br>
+<center>
+<input type="button" onclick="alert('Successfully placed the order')" value="Submit Order Now">
+</center>
+</form>
+</td>
+</tr>
+</table>
+<br><br>
+<table width="100%" border="0" bgcolor="#4a3b32">
+<tr>
+<td>
+<center>
+<font color="#ffffff" size="2">&copy; 2026 VORTEX. All rights reserved.</font>
+</center>
+</td>
+</tr>
+</table>
+</body>
+</html>
