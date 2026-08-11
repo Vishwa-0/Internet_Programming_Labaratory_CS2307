@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Seeker Registration</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Custom background image with dark overlay */
+    background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
+                url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  /* Header Bar */
+  header {
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6366f1;
+    text-decoration: none;
+  }
+  .logo span {
+    color: #ffffff;
+  }
+  .back-link {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .back-link:hover {
+    color: #6366f1;
+  }
+
+  /* Form Styling */
+  .container {
+    padding: 40px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .form-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 450px;
+  }
+  h2 {
+    text-align: center;
+    color: #1e293b;
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #334155;
+    font-size: 14px;
+  }
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+  input:focus {
+    outline: none;
+    border-color: #6366f1;
+  }
+  .error {
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 12px;
+    background-color: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  button:hover {
+    background-color: #4f46e5;
+  }
+  #successMsg {
+    color: #10b981;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">Career<span>Connect</span></a>
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </header>
+
+  <div class="container">
+    <div class="form-box">
+      <h2>Job Seeker Registration</h2>
+
+      <form id="registrationForm" novalidate>
+
+        <label for="fullName">Full Name *</label>
+        <input type="text" id="fullName" placeholder="John Doe">
+        <div class="error" id="fullNameError"></div>
+
+        <label for="email">Email *</label>
+        <input type="text" id="email" placeholder="john@example.com">
+        <div class="error" id="emailError"></div>
+
+        <label for="phone">Phone Number *</label>
+        <input type="text" id="phone" placeholder="10 digit phone number">
+        <div class="error" id="phoneError"></div>
+
+        <label for="password">Password *</label>
+        <input type="password" id="password" placeholder="At least 6 characters">
+        <div class="error" id="passwordError"></div>
+
+        <label for="jobTitle">Desired Job Title *</label>
+        <input type="text" id="jobTitle" placeholder="e.g. Web Developer">
+        <div class="error" id="jobTitleError"></div>
+
+        <label for="experience">Years of Experience *</label>
+        <input type="number" id="experience" placeholder="e.g. 2">
+        <div class="error" id="experienceError"></div>
+
+        <label for="resumeLink">Resume Link (Google Drive / Dropbox URL) *</label>
+        <input type="text" id="resumeLink" placeholder="https://...">
+        <div class="error" id="resumeLinkError"></div>
+
+        <label for="resumeFile">Upload Resume (PDF or DOC only) *</label>
+        <input type="file" id="resumeFile">
+        <div class="error" id="resumeFileError"></div>
+
+        <button type="submit">Register</button>
+        <div id="successMsg"></div>
+
+      </form>
+    </div>
+  </div>
+
+<script>
+document.getElementById("registrationForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  // Clear previous errors
+  const errors = document.querySelectorAll('.error');
+  errors.forEach(err => err.textContent = '');
+  document.getElementById("successMsg").textContent = '';
+
+  let isValid = true;
+
+  // Full Name
+  const fullName = document.getElementById("fullName").value.trim();
+  if (fullName === "") {
+    document.getElementById("fullNameError").textContent = "Full name is required.";
+    isValid = false;
+  }
+
+  // Email
+  const email = document.getElementById("email").value.trim();
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (email === "") {
+    document.getElementById("emailError").textContent = "Email is required.";
+    isValid = false;
+  } else if (!emailPattern.test(email)) {
+    document.getElementById("emailError").textContent = "Please enter a valid email address.";
+    isValid = false;
+  }
+
+  // Phone
+  const phone = document.getElementById("phone").value.trim();
+  const phonePattern = /^[0-9]{10}$/;
+  if (phone === "") {
+    document.getElementById("phoneError").textContent = "Phone number is required.";
+    isValid = false;
+  } else if (!phonePattern.test(phone)) {
+    document.getElementById("phoneError").textContent = "Enter a valid 10 digit phone number.";
+    isValid = false;
+  }
+
+  // Password
+  const password = document.getElementById("password").value;
+  if (password === "") {
+    document.getElementById("passwordError").textContent = "Password is required.";
+    isValid = false;
+  } else if (password.length < 6) {
+    document.getElementById("passwordError").textContent = "Password must be at least 6 characters.";
+    isValid = false;
+  }
+
+  // Job Title
+  const jobTitle = document.getElementById("jobTitle").value.trim();
+  if (jobTitle === "") {
+    document.getElementById("jobTitleError").textContent = "Desired job title is required.";
+    isValid = false;
+  }
+
+  // Experience
+  const experience = document.getElementById("experience").value;
+  if (experience === "") {
+    document.getElementById("experienceError").textContent = "Experience is required.";
+    isValid = false;
+  } else if (experience < 0) {
+    document.getElementById("experienceError").textContent = "Experience cannot be negative.";
+    isValid = false;
+  }
+
+  // Resume Link
+  const resumeLink = document.getElementById("resumeLink").value.trim();
+  const urlPattern = /^(https?:\/\/)[^\s]+$/;
+  if (resumeLink === "") {
+    document.getElementById("resumeLinkError").textContent = "Resume link is required.";
+    isValid = false;
+  } else if (!urlPattern.test(resumeLink)) {
+    document.getElementById("resumeLinkError").textContent = "Enter a valid URL starting with http:// or https://";
+    isValid = false;
+  }
+
+  // Resume File
+  const resumeFile = document.getElementById("resumeFile").value;
+  if (resumeFile === "") {
+    document.getElementById("resumeFileError").textContent = "Please upload your resume.";
+    isValid = false;
+  } else {
+    const allowedExtensions = /(\.pdf|\.doc|\.docx)$/i;
+    if (!allowedExtensions.test(resumeFile)) {
+      document.getElementById("resumeFileError").textContent = "Only PDF or DOC/DOCX files are allowed.";
+      isValid = false;
+    }
+  }
+
+  if (isValid) {
+    document.getElementById("successMsg").textContent = "Registration successful!";
+    document.getElementById("registrationForm").reset();
+  }
+});
+</script>
+
+</body>
+</html>
