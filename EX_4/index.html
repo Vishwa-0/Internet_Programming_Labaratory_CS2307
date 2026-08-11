@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareerConnect - Find Your Dream Job</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)),
+                url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Navigation Bar */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6366f1;
+  }
+  .logo span {
+    color: #ffffff;
+  }
+  .nav-links a {
+    color: #e2e8f0;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover {
+    color: #6366f1;
+  }
+  .nav-links .btn-nav {
+    background-color: #6366f1;
+    padding: 8px 18px;
+    border-radius: 6px;
+    color: white;
+  }
+  .nav-links .btn-nav:hover {
+    background-color: #4f46e5;
+    color: white;
+  }
+
+  /* Hero Section */
+  .hero {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    gap: 40px;
+  }
+  .hero-text {
+    flex: 1;
+  }
+  .hero-text h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .hero-text h1 span {
+    color: #818cf8;
+  }
+  .hero-text p {
+    font-size: 18px;
+    color: #cbd5e1;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+  .cta-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background-color: #6366f1;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+    transition: all 0.3s ease;
+  }
+  .cta-btn:hover {
+    background-color: #4f46e5;
+    transform: translateY(-2px);
+  }
+
+  .hero-image {
+    flex: 1;
+    text-align: center;
+  }
+  .hero-image img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+</style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">Career<span>Connect</span></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="register.html" class="btn-nav">Register Now</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Find Your <span>Dream Job</span> & Accelerate Your Career</h1>
+      <p>Connect with top companies worldwide. Register your profile today and get discovered by top recruiters in tech, design, management, and more.</p>
+      <a href="register.html" class="cta-btn">Create Your Profile</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Team Work">
+    </div>
+  </section>
+
+</body>
+</html>
