@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuizMaster - Authentication</title>
+<style>
+*{box-sizing: border-box; margin: 0; padding: 0;}
+body{
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
+url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+background-size: cover; display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+}
+header{
+width: 100%; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
+background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.logo{font-size: 24px; font-weight: bold; color: #3b82f6; text-decoration: none;}
+.logo span{color: #ffffff;}
+.back-link{color: #e2e8f0; text-decoration: none; font-weight: 500;}
+.back-link:hover{color: #3b82f6;}
+.container{padding: 40px 20px; width: 100%; display: flex; justify-content: center;}
+.form-box{
+background: rgba(255, 255, 255, 0.95); padding: 30px 40px; border-radius: 12px;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); width: 100%; max-width: 450px;
+}
+.tab-header{display: flex; margin-bottom: 20px; border-bottom: 2px solid #cbd5e1;}
+.tab-btn{flex: 1; padding: 10px; text-align: center; background: none; border: none; font-size: 16px; font-weight: 600; cursor: pointer; color: #64748b;}
+.tab-btn.active{color: #3b82f6; border-bottom: 2px solid #3b82f6; margin-bottom: -2px;}
+h2{text-align: center; color: #1e293b; margin-bottom: 20px;}
+label{display: block; margin-top: 12px; font-weight: 600; color: #334155; font-size: 14px;}
+input{width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px;}
+input:focus{outline: none; border-color: #3b82f6;}
+.error{color: #ef4444; font-size: 12px; margin-top: 4px;}
+button.submit-btn{
+width: 100%; margin-top: 20px; padding: 12px; background-color: #3b82f6; color: white;
+border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.3s;
+}
+button.submit-btn:hover{background-color: #2563eb;}
+.form-section{display: none;}
+.form-section.active{display: block;}
+</style>
+</head>
+<body>
+<header>
+<a href="index.html" class="logo">Quiz<span>Master</span></a>
+<a href="index.html" class="back-link">← Back to Home</a>
+</header>
+<div class="container">
+<div class="form-box">
+<div class="tab-header">
+<button class="tab-btn active" onclick="switchTab('login')">Login</button>
+<button class="tab-btn" onclick="switchTab('register')">Create Account</button>
+</div>
+
+<!-- LOGIN FORM -->
+<form id="loginForm" class="form-section active" novalidate>
+<h2>Student Login</h2>
+<label for="loginRoll">Roll Number / Student ID *</label>
+<input type="text" id="loginRoll" placeholder="e.g. CS2026014">
+<div class="error" id="loginRollError"></div>
+
+<label for="loginPass">Password *</label>
+<input type="password" id="loginPass" placeholder="Enter password">
+<div class="error" id="loginPassError"></div>
+
+<button type="submit" class="submit-btn">Login & Start Quiz</button>
+</form>
+
+<!-- REGISTER FORM -->
+<form id="registerForm" class="form-section" novalidate>
+<h2>Create Account</h2>
+<label for="regName">Full Name *</label>
+<input type="text" id="regName" placeholder="Jane Doe">
+<div class="error" id="regNameError"></div>
+
+<label for="regRoll">Roll Number / Student ID *</label>
+<input type="text" id="regRoll" placeholder="e.g. CS2026014">
+<div class="error" id="regRollError"></div>
+
+<label for="regEmail">College Email *</label>
+<input type="email" id="regEmail" placeholder="jane@university.edu">
+<div class="error" id="regEmailError"></div>
+
+<label for="regPass">Password *</label>
+<input type="password" id="regPass" placeholder="At least 6 characters">
+<div class="error" id="regPassError"></div>
+
+<button type="submit" class="submit-btn">Register Account</button>
+</form>
+</div>
+</div>
+
+<script>
+function switchTab(tab) {
+document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+document.querySelectorAll('.form-section').forEach(sec => sec.classList.remove('active'));
+if (tab === 'login') {
+event.target.classList.add('active');
+document.getElementById('loginForm').classList.add('active');
+} else {
+event.target.classList.add('active');
+document.getElementById('registerForm').classList.add('active');
+}
+}
+
+// Validation & Redirect Logic
+const idPattern = /^[A-Za-z0-9]{5,12}$/;
+
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+e.preventDefault();
+let isValid = true;
+document.getElementById("loginRollError").textContent = "";
+document.getElementById("loginPassError").textContent = "";
+
+const roll = document.getElementById("loginRoll").value.trim();
+const pass = document.getElementById("loginPass").value.trim();
+
+if (!idPattern.test(roll)) {
+document.getElementById("loginRollError").textContent = "Enter a valid Roll Number (5-12 alphanumeric characters).";
+isValid = false;
+}
+if (pass.length < 6) {
+document.getElementById("loginPassError").textContent = "Password must be at least 6 characters.";
+isValid = false;
+}
+
+if (isValid) {
+window.location.href = "quiz.html";
+}
+});
+
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+e.preventDefault();
+let isValid = true;
+document.querySelectorAll('.error').forEach(err => err.textContent = '');
+
+const name = document.getElementById("regName").value.trim();
+const roll = document.getElementById("regRoll").value.trim();
+const email = document.getElementById("regEmail").value.trim();
+const pass = document.getElementById("regPass").value.trim();
+
+if (name === "") {
+document.getElementById("regNameError").textContent = "Full name is required.";
+isValid = false;
+}
+if (!idPattern.test(roll)) {
+document.getElementById("regRollError").textContent = "Enter a valid Roll Number (5-12 alphanumeric).";
+isValid = false;
+}
+if (!email.includes("@")) {
+document.getElementById("regEmailError").textContent = "Enter a valid email address.";
+isValid = false;
+}
+if (pass.length < 6) {
+document.getElementById("regPassError").textContent = "Password must be at least 6 characters.";
+isValid = false;
+}
+
+if (isValid) {
+alert("Account created successfully! Redirecting to Quiz...");
+window.location.href = "quiz.html";
+}
+});
+</script>
+</body>
+</html>

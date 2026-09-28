@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuizMaster - HTML & CSS Assessment</title>
+<style>
+*{box-sizing: border-box; margin: 0; padding: 0;}
+body{
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
+url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+background-size: cover; color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+}
+header{
+width: 100%; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
+background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.logo{font-size: 24px; font-weight: bold; color: #3b82f6; text-decoration: none;}
+.logo span{color: #ffffff;}
+.back-link{color: #e2e8f0; text-decoration: none; font-weight: 500;}
+.back-link:hover{color: #3b82f6;}
+.container{padding: 40px 20px; width: 100%; max-width: 700px;}
+.quiz-card{
+background: rgba(30, 41, 59, 0.95); padding: 30px; border-radius: 12px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.5); backdrop-filter: blur(10px);
+}
+h2{margin-bottom: 20px; color: #3b82f6; text-align: center;}
+.question-block{margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #475569;}
+.question-block p{font-weight: 600; margin-bottom: 10px; color: #f8fafc;}
+label{display: block; margin: 8px 0; color: #e2e8f0; cursor: pointer; font-size: 15px;}
+input[type="radio"]{margin-right: 10px; accent-color: #3b82f6; transform: scale(1.1);}
+button{
+width: 100%; padding: 12px; background-color: #3b82f6; color: white;
+border: none; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background-color 0.3s;
+}
+button:hover{background-color: #2563eb;}
+</style>
+</head>
+<body>
+<header>
+<a href="index.html" class="logo">Quiz<span>Master</span></a>
+<a href="auth.html" class="back-link">Logout</a>
+</header>
+<div class="container">
+<div class="quiz-card">
+<h2>HTML & CSS Fundamental Assessment</h2>
+<!-- Set action to your Servlet mapping endpoint, e.g., action="QuizServlet" method="POST" -->
+<form id="quizForm" action="QuizServlet" method="POST">
+<div id="questionsContainer"></div>
+<button type="submit">Submit Quiz to Server</button>
+</form>
+</div>
+</div>
+
+<script>
+const quizData = [
+{ q: "1. What does HTML stand for?", options: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language", "Hyperlinking Text Management Language"] },
+{ q: "2. Which HTML element is used for the largest heading?", options: ["<h6>", "<head>", "<h1>", "<heading>"] },
+{ q: "3. What is the correct HTML element for inserting a line break?", options: ["<lb>", "<break>", "<br>", "<hr>"] },
+{ q: "4. Which property is used to change the background color in CSS?", options: ["color", "background-color", "bgcolor", "canvas-color"] },
+{ q: "5. How do you select an element with id 'demo' in CSS?", options: [".demo", "#demo", "*demo", "demo"] },
+{ q: "6. Which CSS property controls the text size?", options: ["font-style", "text-size", "font-size", "text-style"] },
+{ q: "7. Which HTML attribute specifies an alternative text for an image, if the image cannot be displayed?", options: ["title", "src", "alt", "longdesc"] },
+{ q: "8. Which CSS property is used to change the text color of an element?", options: ["fgcolor", "text-color", "color", "font-color"] },
+{ q: "9. How do you insert a comment in a CSS file?", options: ["// this is a comment", "/* this is a comment */", "<!-- this is a comment -->", "' this is a comment"] },
+{ q: "10. Which HTML tag is used to define an internal style sheet?", options: ["<css>", "<script>", "<style>", "<design>"] }
+];
+
+const container = document.getElementById("questionsContainer");
+
+quizData.forEach((item, index) => {
+let block = document.createElement("div");
+block.classList.add("question-block");
+
+let questionP = document.createElement("p");
+questionP.textContent = item.q;
+block.appendChild(questionP);
+
+item.options.forEach((opt, optIndex) => {
+let label = document.createElement("label");
+let input = document.createElement("input");
+input.type = "radio";
+input.name = `question_${index}`;
+input.value = optIndex; // Passes the selected option index to your backend servlet
+
+label.appendChild(input);
+label.appendChild(document.createTextNode(" " + opt));
+block.appendChild(label);
+});
+
+container.appendChild(block);
+});
+</script>
+</body>
+</html>
