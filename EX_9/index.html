@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShopEase - Home</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #334155;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 50px;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: #0f172a;
+  }
+  .logo span {
+    color: #2563eb;
+  }
+  .nav-links a {
+    color: #475569;
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover {
+    color: #2563eb;
+  }
+  .nav-links .btn-nav {
+    background-color: #2563eb;
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: white;
+  }
+  .nav-links .btn-nav:hover {
+    background-color: #1d4ed8;
+    color: white;
+  }
+  .main-container {
+    flex: 1;
+    max-width: 1000px;
+    width: 100%;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .hero-card {
+    background: #ffffff;
+    padding: 48px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+  }
+  h1 {
+    margin: 0 0 12px 0;
+    color: #0f172a;
+    font-size: 32px;
+    font-weight: 600;
+  }
+  .subtitle {
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto 32px auto;
+  }
+  .cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  .cta-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.15s ease;
+  }
+  .cta-btn:hover {
+    background-color: #1d4ed8;
+  }
+  .cta-btn-secondary {
+    background-color: #ffffff;
+    color: #2563eb;
+    border: 1px solid #cbd5e1;
+  }
+  .cta-btn-secondary:hover {
+    background-color: #f8fafc;
+    border-color: #2563eb;
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .feature-box {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  }
+  .feature-box h3 {
+    margin: 0 0 8px 0;
+    color: #0f172a;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .feature-box p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  @media (max-width: 768px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+    .cta-group {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Shop<span>Ease</span></div>
+    <div class="nav-links">
+      <a href="<%=request.getContextPath()%>/index.jsp">Home</a>
+      <a href="<%=request.getContextPath()%>/orderForm.jsp">Place Order</a>
+      <a href="<%=request.getContextPath()%>/viewOrders.jsp" class="btn-nav">View Orders</a>
+    </div>
+  </nav>
+
+  <div class="main-container">
+    <div class="hero-card">
+      <h1>Welcome to ShopEase</h1>
+      <p class="subtitle">Streamline your product purchasing experience with instant selection-based pricing, automatic total calculations, and an intuitive order tracking hub.</p>
+      <div class="cta-group">
+        <a href="<%=request.getContextPath()%>/orderForm.jsp" class="cta-btn">Place a New Order</a>
+        <a href="<%=request.getContextPath()%>/viewOrders.jsp" class="cta-btn cta-btn-secondary">View All Orders</a>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-box">
+        <h3>Smart Catalog</h3>
+        <p>Choose from pre-loaded products and watch prices update automatically without manual data entry.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Instant Calculations</h3>
+        <p>Total amounts are computed live on the fly as soon as you adjust quantities or items.</p>
+      </div>
+      <div class="feature-box">
+        <h3>Order Tracking</h3>
+        <p>Access the complete historical log of all placed customer orders instantly in a clean table view.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
