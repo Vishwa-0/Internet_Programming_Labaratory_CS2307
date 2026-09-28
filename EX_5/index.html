@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuizMaster - Home</title>
+<style>
+*{box-sizing: border-box; margin: 0; padding: 0;}
+body{
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
+url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+background-size: cover; color: #f8fafc; min-height: 100vh; display: flex; flex-direction: column;
+}
+header{
+width: 100%; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
+background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.logo{font-size: 24px; font-weight: bold; color: #3b82f6; text-decoration: none;}
+.logo span{color: #ffffff;}
+.nav-links{display: flex; gap: 20px; align-items: center;}
+.btn-nav{background-color: #3b82f6; color: white !important; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 500; transition: background-color 0.3s;}
+.btn-nav:hover{background-color: #2563eb;}
+.hero-container{flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px; max-width: 800px; margin: 0 auto;}
+h1{font-size: 3rem; margin-bottom: 20px; color: #ffffff; font-weight: 800; letter-spacing: -0.5px;}
+h1 span{color: #3b82f6;}
+p{font-size: 1.15rem; color: #cbd5e1; margin-bottom: 30px; line-height: 1.6;}
+.cta-buttons{display: flex; gap: 15px;}
+.btn-primary{background-color: #3b82f6; color: white; padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: background-color 0.3s, transform 0.2s;}
+.btn-primary:hover{background-color: #2563eb; transform: translateY(-2px);}
+</style>
+</head>
+<body>
+<header>
+<a href="index.html" class="logo">Quiz<span>Master</span></a>
+<div class="nav-links">
+<a href="auth.html" class="btn-nav">Login / Register</a>
+</div>
+</header>
+<div class="hero-container">
+<h1>Test Your Skills With <span>Online Quizzes</span></h1>
+<p>Challenge yourself with fundamental web development questions, track your progress, and level up your coding expertise right from your student dashboard.</p>
+<div class="cta-buttons">
+<a href="auth.html" class="btn-primary">Get Started</a>
+</div>
+</div>
+</body>
+</html>
