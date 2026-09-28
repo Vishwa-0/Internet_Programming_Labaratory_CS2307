@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background-color: #f1f5f9; 
+            color: #334155;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 420px; 
+            background: #ffffff; 
+            padding: 36px; 
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative top accent bar on the card rim (Green Theme) */
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #34d399, #6ee7b7);
+        }
+
+        h2 { 
+            margin: 0 0 6px 0; 
+            color: #0f172a; 
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        label { 
+            display: block; 
+            margin-top: 14px; 
+            margin-bottom: 6px; 
+            font-size: 13px;
+            font-weight: 500; 
+            color: #475569; 
+        }
+
+        input[type="text"], 
+        input[type="password"],
+        input[type="email"], 
+        input[type="tel"] {
+            width: 100%; 
+            padding: 10px 12px; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 6px; 
+            font-size: 14px;
+            background-color: #ffffff;
+            color: #0f172a;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        input::placeholder {
+            color: #94a3b8;
+        }
+
+        input[type="text"]:focus, 
+        input[type="password"]:focus,
+        input[type="email"]:focus, 
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+        }
+
+        input[type="submit"] {
+            width: 100%; 
+            margin-top: 24px; 
+            padding: 11px; 
+            background-color: #10b981; 
+            color: white; 
+            border: none; 
+            border-radius: 6px; 
+            font-size: 14px; 
+            font-weight: 500;
+            cursor: pointer; 
+            transition: background-color 0.15s ease;
+        }
+
+        input[type="submit"]:hover { 
+            background-color: #059669; 
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Create an account</h2>
+        <div class="subtitle">Enter your information to get started.</div>
+        <form action="register.jsp" method="post">
+            <label for="username">User Name</label>
+            <input type="text" id="username" name="username" placeholder="johndoe" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required>
+            
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required>
+            
+            <label for="ccnumber">Credit Card Number</label>
+            <input type="text" id="ccnumber" name="ccnumber"
+                   pattern="\d{13,19}" maxlength="19"
+                   placeholder="4532 •••• •••• ••••"
+                   title="Enter a valid credit card number (digits only)" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone"
+                   pattern="[0-9]{10}" placeholder="1234567890"
+                   title="Enter a 10 digit phone number" required>
+            
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>
