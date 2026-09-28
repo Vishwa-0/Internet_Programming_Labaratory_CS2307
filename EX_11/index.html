@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order - Modern Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Custom Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            body { padding: 1.5rem; }
+        }
+
+        @media (min-width: 1024px) {
+            body { padding: 2rem; }
+        }
+
+        .order-card {
+            width: 100%;
+            max-width: 36rem;
+            background-color: #ffffff;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-radius: 1rem;
+            border: 1px solid #d1fae5;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* Header Banner */
+        .header-banner {
+            background: linear-gradient(to right, #059669, #0d9488);
+            padding: 1.25rem 1.5rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .header-subtitle {
+            color: #ecfdf5;
+            font-size: 0.875rem;
+            margin-top: 0.125rem;
+        }
+
+        .header-icon-box {
+            background-color: rgba(16, 185, 129, 0.3);
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-icon-box svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #ffffff;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* Form Layout */
+        .order-form {
+            padding: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .order-form { padding: 2rem; }
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 0.375rem;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #cbd5e1;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            color: #334155;
+            font-size: 0.875rem;
+            background-color: rgba(248, 250, 252, 0.5);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            border-color: #059669;
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+        }
+
+        .form-textarea {
+            resize: none;
+        }
+
+        /* Grid for Quantity & Price */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        /* Read-only Total Amount Styling */
+        .total-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #a7f3d0;
+            background-color: rgba(236, 253, 245, 0.6);
+            font-weight: 600;
+            color: #065f46;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        /* Submit Button */
+        .submit-container {
+            padding-top: 0.5rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            background-color: #059669;
+            color: #ffffff;
+            font-weight: 600;
+            border-radius: 0.75rem;
+            border: none;
+            box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.2);
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #047857;
+        }
+
+        .submit-btn:active {
+            background-color: #065f46;
+        }
+
+        .submit-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="order-card">
+        
+        <!-- Header Banner -->
+        <div class="header-banner">
+            <div>
+                <h2 class="header-title">Place New Order</h2>
+                <p class="header-subtitle">Fill in the order details below accurately.</p>
+            </div>
+            <div class="header-icon-box">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+            </div>
+        </div>
+
+        <form action="insert_order.php" method="POST" class="order-form" onsubmit="return validateForm(event)">
+            
+            <!-- Customer Name -->
+            <div class="form-group">
+                <label class="form-label" for="customer_name">Customer Name</label>
+                <input type="text" id="customer_name" name="customer_name" required
+                    class="form-input"
+                    placeholder="e.g., John Doe">
+            </div>
+
+            <!-- Product Name -->
+            <div class="form-group">
+                <label class="form-label" for="product_name">Product Name</label>
+                <input type="text" id="product_name" name="product_name" required
+                    class="form-input"
+                    placeholder="e.g., Wireless Ergonomic Mouse">
+            </div>
+
+            <!-- Grid layout for Quantity and Price -->
+            <div class="grid-2 form-group">
+                <!-- Quantity -->
+                <div>
+                    <label class="form-label" for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" required oninput="calculateTotal()"
+                        class="form-input">
+                </div>
+
+                <!-- Price -->
+                <div>
+                    <label class="form-label" for="price">Price ($)</label>
+                    <input type="number" id="price" name="price" step="0.01" min="0" placeholder="0.00" required oninput="calculateTotal()"
+                        class="form-input">
+                </div>
+            </div>
+
+            <!-- Total Amount (Calculated / Read-Only field) -->
+            <div class="form-group">
+                <label class="form-label" for="total_amount_display">Total Amount ($)</label>
+                <div>
+                    <input type="text" id="total_amount_display" readonly
+                        class="total-input"
+                        value="$0.00">
+                    <!-- Hidden input to submit actual numerical value via POST -->
+                    <input type="hidden" id="total_amount" name="total_amount" value="0">
+                </div>
+            </div>
+
+            <!-- Date -->
+            <div class="form-group">
+                <label class="form-label" for="order_date">Order Date</label>
+                <input type="date" id="order_date" name="order_date" required
+                    class="form-input">
+            </div>
+
+            <!-- Address (Textarea) -->
+            <div class="form-group">
+                <label class="form-label" for="address">Shipping Address</label>
+                <textarea id="address" name="address" rows="3" required
+                    class="form-textarea"
+                    placeholder="Enter full street address, city, state, zip code..."></textarea>
+            </div>
+
+            <div class="submit-container">
+                <button type="submit" class="submit-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Place Order</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- JavaScript helpers for live total calculation and date defaults -->
+    <script>
+        // Set today's date automatically on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('order_date');
+            if (dateInput && !dateInput.value) {
+                dateInput.value = today;
+            }
+        });
+
+        // Function to calculate live total amount
+        function calculateTotal() {
+            const qty = parseFloat(document.getElementById('quantity').value) || 0;
+            const price = parseFloat(document.getElementById('price').value) || 0;
+            const total = qty * price;
+            
+            document.getElementById('total_amount_display').value = '$' + total.toFixed(2);
+            document.getElementById('total_amount').value = total.toFixed(2);
+        }
+
+        // Custom validation / safe submission check
+        function validateForm(event) {
+            const qty = parseFloat(document.getElementById('quantity').value);
+            const price = parseFloat(document.getElementById('price').value);
+            
+            if (qty <= 0 || price < 0) {
+                event.preventDefault();
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
